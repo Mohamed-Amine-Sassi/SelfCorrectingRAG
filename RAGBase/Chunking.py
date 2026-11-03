@@ -1,4 +1,4 @@
-from Extracting import Extracting
+from RAGBase.Extracting import Extracting
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def Chunking(pdf_path):
