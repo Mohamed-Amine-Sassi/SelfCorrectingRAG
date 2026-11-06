@@ -1,20 +1,19 @@
-from RAGBase.Generate import Generate
 from RAGBase.Chunking import Chunking
 from RAGBase.Embedding import Embedding
-from RAGBase.Retrieve import Retrieve
 from Correction.RAGState import RAGState
+from Correction.Graph import build_graph         
+
 if __name__ == "__main__":
     State : RAGState={}
     State["question"] = "AI?"
     State["original_question"] = State["question"]
+    State["retries"] = 0                           
+    State["generations"] = 0                      
     pdf_path = "files/AIBook2.pdf"
     chunked_text = Chunking(pdf_path)
     vectorstore = Embedding(chunked_text, pdf_path)
-    retrieved_docs = Retrieve(vectorstore, State["question"])
-    State["contexts"] = retrieved_docs
-    contexts, answer = Generate(State["contexts"], State["original_question"])
-    State["answer"] = answer
-    print(f"Answer: {answer}")
 
+    graph = build_graph(vectorstore)               
+    State = graph.invoke(State)                    
 
-#sth isn't working, I need to check the code in the middle
+    print(f"Answer: {State['answer']}")
