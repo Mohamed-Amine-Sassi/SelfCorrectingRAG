@@ -7,7 +7,7 @@ def route_after_grading(state: RAGState):
     if state["contexts"]:
         return "generate"
     if state["retries"] >= MAX_RETRIES:
-        return "no_answer"          # don't generate from nothing
+        return  "no_answer"          # don't generate from nothing
     return "rewrite_query"
 
 def route_after_answer(state: RAGState):
