@@ -1,7 +1,7 @@
 from RAGBase.Chunking import Chunking
 from RAGBase.Embedding import Embedding
 from Correction.RAGState import RAGState
-from Correction.Graph import build_graph         
+from Correction.Graph import BuildGraph         
 
 if __name__ == "__main__":
     State : RAGState={}
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     chunked_text = Chunking(pdf_path)
     vectorstore = Embedding(chunked_text, pdf_path)
 
-    graph = build_graph(vectorstore)               
+    graph = BuildGraph(vectorstore)               
     State = graph.invoke(State)                    
 
     print(f"Answer: {State['answer']}")

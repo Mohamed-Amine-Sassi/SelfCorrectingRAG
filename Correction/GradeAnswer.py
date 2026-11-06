@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from RAGState import RAGState
+from Correction.RAGState import RAGState
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 import os

@@ -1,10 +1,10 @@
 
 
 from Correction.RAGState import RAGState
-from RAGBase.Retrieve import Retrieve
+from RAGBase.Retrieve import RetrieveDocuments
 
-def make_retrieve(vectorstore):
+def RetrieveNode(vectorstore):
     def retrieve(state: RAGState) -> dict:
-        docs = Retrieve(vectorstore, state["question"])   # current (maybe rewritten) query
+        docs = RetrieveDocuments(vectorstore, state["original_question"])  
         return {"contexts": [d.page_content for d in docs]}
     return retrieve

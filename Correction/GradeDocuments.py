@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-from RAGState import RAGState
+from Correction.RAGState import RAGState
 from langchain_openai import ChatOpenAI
 import os
 
@@ -17,7 +17,7 @@ class Grades(BaseModel):
 
 grader = llm.with_structured_output(Grades)
 
-def grade_documents(state: RAGState) -> RAGState:
+def GradeDocuments(state: RAGState) -> RAGState:
     chunks = state["contexts"]
     numbered = "\n\n".join(f"[{i}]\n{c}" for i, c in enumerate(chunks))
 
@@ -38,4 +38,4 @@ def grade_documents(state: RAGState) -> RAGState:
 #state = {"original_question": "What is Beta-VAE?", "question": "What is Beta-VAE?",
 #         "contexts": ["Beta-VAE adds a hyperparameter ...", "Index: transformer 7, tools 113 ..."],
 #         "answer": "", "retries": 0}
-#print(grade_documents(state)["contexts"])   # should keep only the first chunk
+#print(GradeDocuments(state)["contexts"])   # should keep only the first chunk
