@@ -1,2 +1,6 @@
 .env
 chroma_db/
+.vscode
+Correction.__pycache__
+files
+RAGBase.__pycache__

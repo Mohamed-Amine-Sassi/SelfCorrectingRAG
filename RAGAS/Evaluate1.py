@@ -132,7 +132,7 @@ def metric_columns(df):
 
 def main():
     ap = argparse.ArgumentParser(description="Score RAG answers with RAGAS (NVIDIA NIM judge).")
-    ap.add_argument("--input", default="eval_dataset.json")
+    ap.add_argument("--input", default="eval_dataset2.json")
     ap.add_argument("--out", default="ragas_results.csv")
     ap.add_argument("--limit", type=int, default=0, help="only score the first N rows")
     ap.add_argument("--full", action="store_true",

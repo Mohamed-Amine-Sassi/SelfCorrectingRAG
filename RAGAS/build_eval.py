@@ -11,7 +11,7 @@ from RAGBase.Generate import GenerateAnswer
 
 PDF_PATH = "files/AIBook2.pdf"
 SRC = "./RAGAS/Q&A.json"
-OUT = "./RAGAS/eval_dataset.json"
+OUT = "./RAGAS/eval_dataset2.json"
 
 
 
