@@ -1,6 +1,6 @@
 from langgraph.graph import END
 from Correction.RAGState import RAGState
-MAX_RETRIES = 2
+MAX_RETRIES = 3
 MAX_GENERATIONS = 3
 
 def RouteAfterGrading(state: RAGState):
@@ -14,7 +14,8 @@ def RouteAfterAnswer(state: RAGState):
     if state["retries"] >= MAX_RETRIES or state["generations"] >= MAX_GENERATIONS:
         return END
     if not state["grounded"]:
-        return "generate"
+        return "generate"         
     if not state["useful"]:
         return "rewrite_query"
     return END
+

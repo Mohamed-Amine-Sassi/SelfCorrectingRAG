@@ -28,3 +28,4 @@ def BuildGraph(vectorstore) -> StateGraph[RAGState]:
     })
 
     return graph.compile()
+

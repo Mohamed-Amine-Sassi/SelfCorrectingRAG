@@ -4,14 +4,15 @@ import time
 import os
 import shutil
 
-from Chunking import Chunking
-from Embedding import Embedding
-from Retrieve import Retrieve
-from Generate import Generate
+from RAGBase.Chunking import Chunking
+from RAGBase.Embedding import Embedding
+from RAGBase.Retrieve import RetrieveDocuments
+from RAGBase.Generate import GenerateAnswer
 
 PDF_PATH = "files/AIBook2.pdf"
-SRC = "gemini-code-1793554602243.json"
-OUT = "eval_dataset.json"
+SRC = "./RAGAS/Q&A.json"
+OUT = "./RAGAS/eval_dataset.json"
+
 
 
 # ---------------------------------
@@ -119,8 +120,8 @@ def BuildEval():
             continue
 
         try:
-            retrieved_docs = Retrieve(vectorstore, item["question"])
-            contexts, answer = Generate(retrieved_docs, item["question"])
+            retrieved_docs = RetrieveDocuments(vectorstore, item["question"])
+            contexts, answer = GenerateAnswer(retrieved_docs, item["question"])
             result = {
                 "id": item["id"],
                 "chapter": item["chapter"],
