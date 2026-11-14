@@ -5,3 +5,6 @@ def Generate(state: RAGState) -> dict:
     _, answer = GenerateAnswer(state["contexts"], state["original_question"],
                          state.get("feedback", ""))
     return {"answer": answer, "generations": state.get("generations", 0) + 1}
+
+def NoAnswer(state):
+    return {"answer": "I couldn't find this in the document.", "contexts": []}

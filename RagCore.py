@@ -1,3 +1,5 @@
+from platform import node
+
 from RAGBase.Chunking import Chunking
 from RAGBase.Embedding import Embedding 
 from RAGBase.Retrieve import RetrieveDocuments
@@ -17,18 +19,20 @@ def run_with_trace(graph, question):
     for step in graph.stream(dict(state), stream_mode="updates"):
         for node, upd in step.items():
             state.update(upd)
-            if node == "RetrieveDocuments":
+            if node == "Retrieve":
                 yield {"node": node, "text": f"Retrieved {len(upd['contexts'])} chunks"}
             elif node == "GradeDocuments":
                 yield {"node": node, "text": f"Kept {len(upd['contexts'])} relevant chunks"}
-            elif node == "Rewrite":
+            elif node == "RewriteQuery":
                 yield {"node": node, "text": f"Rewrote the search query: {upd['question']}"}
             elif node == "Generate":
                 yield {"node": node, "text": "Generated an answer"}
-            elif node == "AnswerGrade":
+            elif node == "GradeAnswer":
                 yield {"node": node, "text": f"Grounded: {upd['grounded']} | Useful: {upd['useful']}"}
-            else:
+            elif node == "NoAnswer":
                 yield {"node": node, "text": "No relevant information found"}
+            else:
+                yield {"node": node, "text": "step finished"}
     yield {"node": "done", "answer": state.get("answer"), "contexts": state.get("contexts", [])}
 
 
