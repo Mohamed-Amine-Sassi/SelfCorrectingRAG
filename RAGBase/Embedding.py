@@ -2,7 +2,6 @@
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 import os
-import hashlib
 
 
 def Embedding(Chunkedtexts, pdf_path):
