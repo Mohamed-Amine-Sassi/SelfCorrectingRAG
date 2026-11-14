@@ -1,6 +1,16 @@
 .env
+*.env
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# index and documents
 chroma_db/
-.vscode
-Correction.__pycache__
-files
-RAGBase.__pycache__
+files/
+*.pdf
+
+# eval outputs that contain book text
+RAGAS/*.csv
+RAGAS/eval_dataset*.json
