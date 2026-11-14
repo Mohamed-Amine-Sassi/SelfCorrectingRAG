@@ -84,8 +84,6 @@ The pipeline is scored with [RAGAS](https://docs.ragas.io) on 50 questions with 
 | Version | Faithfulness | Answer relevancy | Context precision |
 |---|---|---|---|
 | Baseline (retrieve + generate, 7 chunks) | 0.85 | 0.72 | 0.86 |
-| v2: + document grading | not run yet | not run yet | not run yet |
-| v3: + answer grading and retries | not run yet | not run yet | not run yet |
 
 Notes on the method:
 
@@ -96,8 +94,6 @@ Notes on the method:
 
 ## Quick start
 
-### With Docker
-
 ```bash
 git clone https://github.com/Mohamed-Amine-Sassi/SelfCorrectingRAG.git
 cd SelfCorrectingRAG
@@ -106,16 +102,6 @@ docker compose up --build
 ```
 
 Open <http://localhost:8501>, upload a PDF in the sidebar and ask a question.
-
-### Without Docker
-
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install torch --index-url https://download.pytorch.org/whl/cpu
-pip install -r requirements.txt
-cp .env.example .env        # then add your GROQ_API_KEY
-streamlit run WebApp.py
-```
 
 Python 3.12. A free Groq API key is available at <https://console.groq.com>.
 
@@ -163,14 +149,3 @@ Python 3.12. A free Groq API key is available at <https://console.groq.com>.
 - Uploads are limited to 20 MB. Indexes of uploaded documents are kept on disk until the Docker volume is removed.
 - English documents only. For other languages, swap the embedding model for a multilingual one.
 
-## Copyright
-
-The textbook used for development and evaluation is not distributed with this repository. Bring your own PDF.
-
-## Author
-
-**Mohamed Amine Sassi**: [GitHub](https://github.com/Mohamed-Amine-Sassi)
-
-## License
-
-<!-- Choose a license (for example MIT) and add a LICENSE file. -->
